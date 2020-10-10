@@ -1,0 +1,19 @@
+<div class="ui middle aligned selection divided list">
+  <ng-container *ngFor="let prof of profs; let first = first">
+    <ng-container *ngFor="let subject of prof.subjects">
+      <app-subject-list-item class="item" [ngClass]="{'details' : viewState === 'details', 'no-padding' : viewState === 'list'}"
+      [viewState]="viewState" [subject]="subject" [prof]="prof" [routerLink]="['/subjects' , subject.id]"
+      >
+      </app-subject-list-item>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="!profs" class="ui active dimmer">
+    <div class="ui large text loader">
+      Daten werden geladen...
+    </div>
+  </div>
+
+  <p *ngIf="profs && !profs.length">
+    Es wurden noch keine Fächer eingetragen
+  </p>
+</div>

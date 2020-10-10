@@ -1,0 +1,109 @@
+fragment prof on Professor {
+  id
+  title
+  firstName
+  lastName
+  faculty
+}
+
+fragment subject on Subject {
+  id
+  name
+  from
+  to
+}
+
+fragment thumbnail on Professor {
+  thumbnails {
+    url
+  }
+}
+
+fragment review on Review {
+    id
+    rating
+    title
+    text
+    published
+}
+
+fragment talkingTime on Professor {
+  talkingTimes {
+    campus
+    room
+    startTime
+    endTime
+    day
+  }
+}
+
+
+query getProfs {
+  getAllProfs(sortDirection: ASC) {
+    subjects {
+      semester
+      ...subject
+    }
+    ...prof
+    ...thumbnail
+  }
+}
+
+query getAllProfsSearch($searchTerm: String) {
+  getAllProfsSearch(searchTerm: $searchTerm) {
+    ...prof
+  }
+}
+
+query getProfById($id: ID!) {
+  getProfById(id: $id) {
+    phoneNumber
+    email
+    jobStart
+    averageRating
+    subjects {
+      ...subject
+    }
+    ...prof
+    ...thumbnail
+    ...talkingTime
+  }
+}
+
+query getProfBySubjectId($id: ID!) {
+  getProfBySubjectId(id: $id) {
+    subjects {
+      semester
+      ...subject
+      reviews {
+        ...review
+      }
+    }
+    ...prof
+    ...thumbnail
+    ...talkingTime
+  }
+}
+
+mutation deleteProfById($id: ID!) {
+  deleteProfBy(id: $id)
+}
+
+mutation createReview($review: ReviewWrapper) {
+  createReview(review: $review) {
+    ...review
+  }
+}
+
+query getReviewById($id: ID!) {
+    getReviewById(id: $id) {
+      ...review
+    }
+  }
+
+query getAllSubjects {
+    getAllSubjects {
+      ...subject
+    }
+  }
+

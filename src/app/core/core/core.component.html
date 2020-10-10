@@ -1,0 +1,11 @@
+<div class="ui menu sticky">
+  <a [routerLink]="'/home'" class="item" [routerLinkActive]="'active'">Home</a>
+  <a [routerLink]="'/profs'" class="item" [routerLinkActive]="'active'">Professoren</a>
+  <a [routerLink]="'/subjects'" class="item" [routerLinkActive]="'active'">Fächer und Reviews</a>
+  <a [routerLink]="'/subjects/review/create'" class="item" [routerLinkActive]="'active'">Reviews schreiben</a>
+  <div class="rightAlignment" *ngIf="showSearchBar === 'prof' || showSearchBar === 'subject'">
+    <app-search-header *ngIf="showSearchBar === 'prof'" [placeholder]="'Professor suchen'" (searchEvent)="search($event)"></app-search-header>
+    <!-- <app-search-header *ngIf="showSearchBar === 'subject'" [placeholder]="'Fach suchen'" (searchEvent)="search($event)"></app-search-header> -->
+  </div>
+</div>
+<router-outlet></router-outlet>

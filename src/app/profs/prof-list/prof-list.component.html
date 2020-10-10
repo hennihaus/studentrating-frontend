@@ -1,0 +1,14 @@
+<div class="ui middle aligned selection divided list">
+  <app-prof-list-item class="item"  [prof]="prof" [routerLink]="['/profs', prof.id]" *ngFor="let prof of profs$ | async as profs">
+  </app-prof-list-item>
+  <div *ngIf="!(profs$ | async)" class="ui active dimmer">
+    <div class="ui large text loader">
+      Daten werden geladen...
+    </div>
+  </div>
+  <ng-container *ngIf="profs$ | async as profs">
+    <p *ngIf="!profs.length">
+      Es wurden noch keine Professoren eingetragen
+    </p>
+  </ng-container>
+</div>

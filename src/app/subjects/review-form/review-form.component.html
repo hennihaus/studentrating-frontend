@@ -1,0 +1,42 @@
+<form class="ui form" #reviewForm="ngForm" (ngSubmit)="submitForm()">
+  <label>Vorlesung</label>
+  <sui-select [options]="profs" labelField="name" valueField="id" placeholder="Suchen oder Auswählen" [isSearchable]="true"
+      class="fluid selection" #selectProf [(ngModel)]="review.id" name="id" required *ngIf="!disabled; else this.disabledId">
+    <sui-select-option [value]="o" *ngFor="let o of selectProf.filteredOptions">
+    </sui-select-option>
+  </sui-select>
+  <app-form-messages [control]="selectProf" [controlName]="'id'" *ngIf="!disabled">
+  </app-form-messages>
+  <br>
+  <br>
+  <label>Rating</label>
+  <br>
+  <sui-rating class="star" [maximum]="10" [(ngModel)]="review.rating" name="rating" required #star="ngModel" *ngIf="!disabled"></sui-rating>
+  <ng-container *ngIf="disabled" [ngTemplateOutlet]="disabledRating" [ngTemplateOutletContext]="{ link: review.rating }">
+  </ng-container>
+  <app-form-messages [control]="star" [controlName]="'rating'" *ngIf="!disabled">
+  </app-form-messages>
+  <br>
+  <br>
+  <label>Titel</label>
+  <input type="text" [(ngModel)]="review.title" name="title" required #title="ngModel" maxlength="50" [disabled]="disabled">
+  <app-form-messages [control]="title" [controlName]="'title'" *ngIf="!disabled">
+
+  </app-form-messages>
+  <br>
+  <br>
+  <label>Kritik</label>
+  <textarea [(ngModel)]="review.text" name="text" required minlength="25" #text="ngModel" [disabled]="disabled"></textarea>
+  <app-form-messages [control]="text" [controlName]="'text'" *ngIf="!disabled">
+  </app-form-messages>
+  <br>
+  <button class="ui button" type="submit" [disabled]="this.reviewForm.invalid" *ngIf="!disabled">Speichern</button>
+</form>
+
+<ng-template #disabledId>
+  <input type="text" [disabled]="disabled" [ngModel]="review.id">
+</ng-template>
+
+<ng-template #disabledRating let-link="link">
+  <i class="yellow star icon" *ngFor="let r of link | rating"></i>
+</ng-template>

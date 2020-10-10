@@ -1,0 +1,19 @@
+<img class="ui tiny image" appZoom *ngIf="prof.thumbnails && prof.thumbnails[0] && prof.thumbnails[0].url; else this.noPicture" [src]="prof.thumbnails[0].url">
+<div class="content">
+  <div class="header">
+    <span *ngIf="prof.title">{{ Title[prof.title] }}</span> {{ prof.firstName }} {{ prof.lastName }}
+  </div>
+  <div class="description">
+    Fakultät {{ Faculty[prof.faculty] }}
+  </div>
+  <div class="metadata" *ngIf="prof.subjects && prof.subjects[0]">
+    Fächer:
+    <span *ngFor="let subject of prof.subjects; last as l">
+      <ng-container *ngIf="subject.name">{{ subject.name }}</ng-container><span *ngIf="!l">, </span>
+    </span>
+  </div>
+</div>
+
+<ng-template #noPicture>
+<img class="ui tiny image" [src]="'assets/icon/person-dummy.jpg'">
+</ng-template>

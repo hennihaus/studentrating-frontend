@@ -1,0 +1,16 @@
+<div class="content">
+  <div [ngClass]="viewState === 'list' ? 'header' : 'description'">
+    {{ subject.name }}
+  </div>
+  <div [ngClass]="viewState === 'list' ? 'description' : 'metadata'" *ngIf="viewState === 'list'">
+    <span *ngIf="prof.title">{{ Title[prof.title] }}</span> {{ prof.firstName }} {{ prof.lastName }}
+
+  </div>
+  <div class="metadata" *ngIf="viewState === 'list'">
+    {{ subject.semester }}. Semester - Von {{ subject.from | date:'yyyy'}} bis <span *ngIf="subject.to; else this.today">{{ subject.to | date: 'yyyy' }}</span>
+  </div>
+</div>
+
+<ng-template #today>
+  Heute
+</ng-template>

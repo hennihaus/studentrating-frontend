@@ -1,0 +1,10 @@
+<div class="ui middle aligned selection divided list">
+  <app-review-list-item class="item" *ngFor="let review of reviews" [review]="review" [subjectId]="subjectId"
+  [routerLink]="['/subjects', subjectId, 'reviews', review.id]">
+
+  </app-review-list-item>
+  <p *ngIf="reviews && !reviews.length">
+      Es wurden noch keine Reviews eingetragen
+  </p>
+</div>
+

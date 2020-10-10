@@ -1,0 +1,49 @@
+<div *ngIf="prof$ | async as prof; else this.loading">
+  <h1><span *ngIf="this.prof.title"> {{ Title[this.prof.title] }}</span> {{ this.prof.firstName }} {{ this.prof.lastName }}</h1>
+  <h3>{{ Faculty[this.prof.faculty] }}</h3>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="two wide column" *ngIf="this.prof.thumbnails && this.prof.thumbnails[0] && this.prof.thumbnails[0].url">
+      <img class="ui small image" [src]="this.prof.thumbnails[0].url">
+    </div>
+    <div class="four wide column">
+      <h4>Kontaktdaten</h4>
+      Telefon {{ this.prof.phoneNumber | phone }}<br>
+      {{ this.prof.email }}
+      <h4>Sprechzeiten</h4>
+      <ng-container *ngIf="this.prof.talkingTimes && this.prof.talkingTimes[0]; else this.nV">
+        <ng-container *ngFor="let talkingTime of this.prof.talkingTimes">
+          Campus {{ Campus[talkingTime.campus] }} <br>
+          Raum {{ talkingTime.room }}<br>
+          {{ Day[talkingTime.day] }} {{ talkingTime.startTime }} - {{ talkingTime.endTime }}<br>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="four wide column">
+      <h4>An der Hochschule seit</h4>
+      {{ this.prof.jobStart | date: 'MMMM yyyy'}}<br><br>
+      <h4>Durchschnittliches Rating</h4>
+      <ng-container *ngFor="let r of this.prof.averageRating | rating; index as i">
+        <i class="yellow star icon" *appDelay="200 + i * 100"></i>
+      </ng-container>
+      ({{ this.prof.averageRating | number: '2.2-2' }})
+    </div>
+    <div class="four wide column">
+      <h4>Fächer bewerten</h4>
+      <app-subject-list [profs]="[this.prof]" [viewState]="'details'"></app-subject-list>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <button class="ui tiny red labeled icon button" (click)="removeProf()">
+    <i class="remove icon"></i>Professor löschen
+  </button>
+</div>
+
+<ng-template #nV>
+  Nach Vereinbarung
+  <br>
+</ng-template>
+
+<ng-template #loading>
+  <div class="ui active centered inline loader"></div>
+</ng-template>

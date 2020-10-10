@@ -1,0 +1,38 @@
+overwrite: true
+schema: "http://localhost:8080/graphql"
+documents: "src/**/*.graphql"
+generates:
+  src/app/model/graphql-types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-apollo-angular"
+    config:
+      namingConvention:
+        enumValues: keep
+      scalars:
+        LocalDate: Date
+        LocalDateTime: string
+      enumValues:
+        Day:
+          MONDAY: 'Montag'
+          THUESDAY: 'Dienstag'
+          WEDNESDAY: 'Mittwoch'
+          THURSDAY: 'Donnerstag'
+          FRIDAY: 'Freitag'
+        Title:
+          PROF: 'Prof.'
+          PROF_DR: 'Prof. Dr.'
+          DR: 'Dr.'
+          PROF_DR_ING: 'Prof. Dr. Ing.'
+        Faculty:
+          WI: 'Wirtschaftsinformatik'
+          AIN: 'Informatik'
+          MIB: 'Medieninformatik'
+        Campus:
+          FURTWANGEN: 'Furtwangen'
+          TUTTLINGEN: 'Tuttlingen'
+          VILLINGEN_SCHWENNINGEN: 'Villingen Schwenningen'
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

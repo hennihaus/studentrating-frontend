@@ -1,0 +1,11 @@
+<div class="ui grid">
+  <div class="eight wide column">
+    {{ review.title }}
+  </div>
+  <div class="eight wide column">
+    <ng-container *ngFor="let r of review.rating | rating; index as i">
+      <i class="yellow star icon"  *appDelay="200 + i * 100"></i>
+    </ng-container>
+  </div>
+</div>
+

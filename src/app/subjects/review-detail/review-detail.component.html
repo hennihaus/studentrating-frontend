@@ -1,0 +1,10 @@
+<h1>Review Details</h1>
+<ng-container *ngIf="prof$ | async as prof">
+  <app-review-form [review]="this.review" [profs]="prof" [disabled]="disabled" *ngIf="review$ | async as review; else this.loading">
+
+  </app-review-form>
+</ng-container>
+
+<ng-template #loading>
+  <div class="ui active centered inline loader"></div>
+</ng-template>

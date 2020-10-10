@@ -1,0 +1,39 @@
+<div *ngIf="prof$ | async as prof; else this.loading">
+  <ng-container *ngIf="subject$ | async as subject; else this.loading">
+    <h1>{{ this.subject.name }}</h1>
+    <div class="ui divider"></div>
+    <div class="ui grid">
+      <div class="row">
+        <div class="eight wide column">
+          <h4>Dozent</h4>
+          <u [routerLink]="['/profs', this.prof.id]" style="color: blue; cursor: pointer;">
+            <span *ngIf="this.prof.title"> {{ Title[this.prof.title] }}</span> {{ this.prof.firstName }} {{ this.prof.lastName }}
+          </u>
+        </div>
+        <div class="eight wide column">
+          <h4>Semester</h4>
+          <span>{{ subject.semester }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight wide column">
+          <h4>Reviews</h4>
+        </div>
+        <div class="eight wide column">
+          <h4>Ratings</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="sixteen wide column">
+          <app-review-list [reviews]="subject.reviews" [subjectId]="subject.id">
+
+          </app-review-list>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  <div class="ui active centered inline loader"></div>
+</ng-template>
