@@ -16,7 +16,7 @@ jobs:
           node-version: '14'
 
       - name: Install Dependencies
-        run: yarn install
+        run: npm install
 
       - name: Build project
-        run: yarn run build
+        run: npm run build
