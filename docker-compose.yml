@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  latest-frontend:
+    image: hennihaus/studentrating-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8094:80
+  versioned-frontend:
+    image: hennihaus/studentrating-frontend:${VERSION_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8094:80
