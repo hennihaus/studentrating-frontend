@@ -19,4 +19,4 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: ng build
+        run: npm run build

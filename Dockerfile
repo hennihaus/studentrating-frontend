@@ -4,7 +4,7 @@ WORKDIR /studentrating
 COPY . .
 RUN chown -R node:node /studentrating
 USER node
-RUN npm install && ng build
+RUN npm install && npm run build
 
 # deployment stage
 FROM nginx:alpine
