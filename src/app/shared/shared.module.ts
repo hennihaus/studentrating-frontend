@@ -6,12 +6,14 @@ import { RatingPipe } from './rating.pipe';
 import { ZoomDirective } from './zoom.directive';
 import { SuiModule } from 'ng2-semantic-ui';
 import { FormsModule } from '@angular/forms';
+import { ImagePreloadDirective } from './image-preload.directive';
 
 const parts = [
   DelayDirective,
   PhonePipe,
   RatingPipe,
-  ZoomDirective
+  ZoomDirective,
+  ImagePreloadDirective
 ];
 
 const moduleParts = [

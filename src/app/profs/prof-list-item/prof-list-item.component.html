@@ -1,4 +1,4 @@
-<img class="ui tiny image" appZoom *ngIf="prof.thumbnails && prof.thumbnails[0] && prof.thumbnails[0].url; else this.noPicture" [src]="prof.thumbnails[0].url">
+<img class="ui tiny image" appZoom appImagePreload [image]="prof.thumbnails[0].url" default="assets/icon/person-dummy.jpg">
 <div class="content">
   <div class="header">
     <span *ngIf="prof.title">{{ Title[prof.title] }}</span> {{ prof.firstName }} {{ prof.lastName }}
@@ -13,7 +13,3 @@
     </span>
   </div>
 </div>
-
-<ng-template #noPicture>
-<img class="ui tiny image" [src]="'assets/icon/person-dummy.jpg'">
-</ng-template>
