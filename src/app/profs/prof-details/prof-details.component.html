@@ -4,7 +4,7 @@
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="two wide column" *ngIf="this.prof.thumbnails && this.prof.thumbnails[0] && this.prof.thumbnails[0].url">
-      <img class="ui small image" [src]="this.prof.thumbnails[0].url">
+      <img class="ui small image" appImagePreload [image]="this.prof.thumbnails[0].url" [default]="'assets/icon/person-dummy.jpg'">
     </div>
     <div class="four wide column">
       <h4>Kontaktdaten</h4>
