@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { CoreComponent } from './core/core.component';
 import { SearchHeaderComponent } from './search-header/search-header.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SearchHeaderComponent } from './search-header/search-header.component';
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    SharedModule
   ]
 })
 export class CoreModule { }

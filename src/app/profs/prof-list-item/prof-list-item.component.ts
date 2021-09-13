@@ -9,6 +9,7 @@ import { GetProfsQuery, Title, Faculty } from 'src/app/model/graphql-types';
 })
 export class ProfListItemComponent implements OnInit {
   @Input() prof: GetProfsQuery['getAllProfs'][0];
+  @Input() thumbnailUrl: string;
 
   Title = Title;
   Faculty = Faculty;

@@ -1,4 +1,4 @@
-<img class="ui tiny image" appZoom appImagePreload [image]="prof.thumbnails[0].url" [default]="'assets/icon/person-dummy.jpg'">
+<img class="ui tiny image" appZoom appImagePreload [src]="prof.thumbnails[0].url" [alternativeSrc]="thumbnailUrl">
 <div class="content">
   <div class="header">
     <span *ngIf="prof.title">{{ Title[prof.title] }}</span> {{ prof.firstName }} {{ prof.lastName }}

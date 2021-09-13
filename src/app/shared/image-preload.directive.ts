@@ -1,17 +1,18 @@
-import {Directive, HostBinding, HostListener, Input} from '@angular/core';
+import {Directive, HostBinding, HostListener, Input, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[appImagePreload]'
 })
-export class ImagePreloadDirective {
-  @Input() image: string;
-  @Input() default: string;
+export class ImagePreloadDirective implements OnInit {
+  @Input() src: string;
+  @Input() alternativeSrc: string;
+  @HostBinding('src') source: string;
 
-  @HostBinding('src') get src(): string {
-    return this.image;
+  ngOnInit(): void {
+    this.source = this.src;
   }
 
-  @HostListener('error') onError() {
-    this.image = this.default;
+  @HostListener('error') onError(): void {
+    this.source = this.alternativeSrc;
   }
 }

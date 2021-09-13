@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ProfListComponent
   },
   {
-    path: ':id',
+    path: ':id/:thumbnailUrl',
     component: ProfDetailsComponent
   },
 ];

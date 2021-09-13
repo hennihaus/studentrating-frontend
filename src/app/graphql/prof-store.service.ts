@@ -1,9 +1,18 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
-import { GetProfByIdGQL, GetProfBySubjectIdGQL, GetProfsGQL, GetAllProfsSearchGQL, DeleteProfByIdGQL, GetProfByIdQuery, GetProfBySubjectIdQuery, GetProfsQuery, GetAllProfsSearchQuery } from '../model/graphql-types';
-
+import {HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, map, retry} from 'rxjs/operators';
+import {
+  DeleteProfByIdGQL,
+  GetAllProfsSearchGQL,
+  GetAllProfsSearchQuery,
+  GetProfByIdGQL,
+  GetProfByIdQuery,
+  GetProfBySubjectIdGQL,
+  GetProfBySubjectIdQuery,
+  GetProfsGQL,
+  GetProfsQuery
+} from '../model/graphql-types';
 
 
 @Injectable({
@@ -20,17 +29,17 @@ export class ProfStoreService {
   }
 
   getSingle(id: string): Observable<GetProfByIdQuery['getProfById']> {
-    return this.getProfById.watch({ id }).valueChanges.pipe(
+    return this.getProfById.watch({id}).valueChanges.pipe(
       retry(3),
-      map(({ data }) => data.getProfById),
+      map(({data}) => data.getProfById),
       catchError(this.errorHandler)
     );
   }
 
   getSingleBySubjectId(id: string): Observable<GetProfBySubjectIdQuery['getProfBySubjectId']> {
-    return this.getProfBySubjectId.watch({ id }).valueChanges.pipe(
+    return this.getProfBySubjectId.watch({id}).valueChanges.pipe(
       retry(3),
-      map(({ data }) => data.getProfBySubjectId),
+      map(({data}) => data.getProfBySubjectId),
       catchError(this.errorHandler)
     );
   }
@@ -38,21 +47,21 @@ export class ProfStoreService {
   getAll(): Observable<GetProfsQuery['getAllProfs']> {
     return this.getProfs.watch().valueChanges.pipe(
       retry(3),
-      map(({ data }) => data.getAllProfs),
+      map(({data}) => data.getAllProfs),
       catchError(this.errorHandler)
     );
   }
 
   getAllSearch(searchTerm: string): Observable<GetAllProfsSearchQuery['getAllProfsSearch']> {
-    return this.getAllProfsSearch.watch({ searchTerm }).valueChanges.pipe(
+    return this.getAllProfsSearch.watch({searchTerm}).valueChanges.pipe(
       retry(3),
-      map(({ data }) => data.getAllProfsSearch),
+      map(({data}) => data.getAllProfsSearch),
       catchError(this.errorHandler)
     );
   }
 
   remove(id: string): Observable<any> {
-    return this.deleteProfById.mutate({ id }).pipe(
+    return this.deleteProfById.mutate({id}).pipe(
       retry(3),
       catchError(this.errorHandler)
     );

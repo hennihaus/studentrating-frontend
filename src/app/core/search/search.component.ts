@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
-import { GetAllProfsSearchQuery } from '../../model/graphql-types';
+import { GetAllProfsSearchQuery, Title } from '../../model/graphql-types';
 import { ProfStoreService } from 'src/app/graphql/prof-store.service';
 
 @Component({
@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   keyUp$ = new Subject<string>();
   isLoading$ = new BehaviorSubject<boolean>(false);
   profs$: Observable<GetAllProfsSearchQuery['getAllProfsSearch']>;
+
+  Title = Title;
 
   constructor(
     private ps: ProfStoreService
