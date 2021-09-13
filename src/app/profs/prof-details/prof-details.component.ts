@@ -13,6 +13,7 @@ import { ProfStoreService } from 'src/app/graphql/prof-store.service';
 })
 export class ProfDetailsComponent implements OnInit {
   prof$: Observable<GetProfByIdQuery['getProfById']>;
+  thumbnailUrl: string;
 
   Title = Title;
   Faculty = Faculty;
@@ -28,6 +29,7 @@ export class ProfDetailsComponent implements OnInit {
   ngOnInit(): void {
     const params = this.route.snapshot.paramMap;
     this.prof$ = this.profStoreService.getSingle(params.get('id'));
+    this.thumbnailUrl = params.get('thumbnailUrl');
   }
 
   removeProf() {

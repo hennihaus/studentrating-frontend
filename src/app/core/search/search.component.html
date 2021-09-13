@@ -4,10 +4,15 @@
     <i class="search icon"></i>
   </div>
 
-  <div class="results transition visible" *ngIf="profs$ | async">
-    <a class="result" *ngFor="let prof of profs$ | async" [routerLink]="['/profs', prof.id]">
-      <span *ngIf="prof.title">{{ prof.title }}</span> {{ prof.firstName }} {{ prof.lastName }}
-      <p class="description">Fakultät: {{ prof.faculty }}</p>
+  <div class="results transition visible" *ngIf="profs$ | async as profs">
+    <ng-container *ngFor="let prof of profs">
+      <a *ngIf="'large' | randomAvatar as thumbnailUrl" class="result" [routerLink]="['/profs', prof.id, thumbnailUrl]">
+        <span *ngIf="prof.title">{{ Title[prof.title] }}</span> {{ prof.firstName }} {{ prof.lastName }}
+        <p class="description">Fakultät: {{ prof.faculty }}</p>
+      </a>
+    </ng-container>
+    <a class="result" *ngIf="!profs.length">
+      Keine Ergebnisse gefunden
     </a>
   </div>
 </div>

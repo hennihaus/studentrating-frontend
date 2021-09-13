@@ -6,7 +6,7 @@
       <div class="row">
         <div class="eight wide column">
           <h4>Dozent</h4>
-          <u [routerLink]="['/profs', this.prof.id]" style="color: blue; cursor: pointer;">
+          <u *ngIf="'large' | randomAvatar as thumbnailUrl" [routerLink]="['/profs', this.prof.id, this.thumbnailUrl]" style="color: blue; cursor: pointer;">
             <span *ngIf="this.prof.title"> {{ Title[this.prof.title] }}</span> {{ this.prof.firstName }} {{ this.prof.lastName }}
           </u>
         </div>
